@@ -61,11 +61,11 @@ class JSONWechatTokenSerializer(Serializer):
         # if userid
         if userid:
             user = self._get_or_create_user(userid['userid'])
-            userinfo = ding_talk_client.get_user_info(userid['userid'])
+            # userinfo = ding_talk_client.get_user_info(userid['userid'])
             # print(userinfo, 'userinfo')
-            user_info = json.dumps(userinfo)
+            user_info = json.dumps(userid)
             # print(user_info, 'userinfo')
-            user_info = json.loads(user_info)
+            user_info = json.loads(userid)
             try:
                 _user_info = UserInfo.objects.filter(user=user)
                 if _user_info.exists():

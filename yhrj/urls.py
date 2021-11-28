@@ -33,7 +33,7 @@ router.register('hotel_server', ServiceViewSet, basename='酒店服务')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/hotel/', include(router.urls)),
-    path('api/auth/login', obtain_jwt_token),
+    path('api/auth/login/', obtain_jwt_token),
     # path('docs', include('rest_framework_docs.urls')),
 ]
 schema_view = get_schema_view(
