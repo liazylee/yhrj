@@ -68,6 +68,7 @@ class JSONWechatTokenSerializer(Serializer):
             # user_info = json.loads(userid)
             try:
                 _user_info = UserInfo.objects.filter(user=user)
+                logging.info(_user_info,'_user_info')
                 if _user_info.exists():
                     logging.info('userinfo exists')
                     _user_info.update(**user_info)
