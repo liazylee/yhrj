@@ -34,8 +34,8 @@ from user_info.serializers import UserInfoSerializers
 def jwt_response_payload_handler(token, user=None, request=None):
     return {
         'token': token,
-        # 'user': UserInfoSerializers(UserInfo.objects.get(user=user), context={
-        #     'request': request}).data
+        'user': UserInfoSerializers(UserInfo.objects.get(user=user), context={
+            'request': request}).data
     }
 
 

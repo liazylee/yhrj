@@ -71,10 +71,10 @@ class JSONWechatTokenSerializer(Serializer):
                 logging.info(_user_info,'_user_info')
                 if _user_info.exists():
                     logging.info('userinfo exists')
-                    _user_info.update(**user_info)
+                    _user_info.update(**userid)
                 else:
                     logging.info('userinfo not exists')
-                    UserInfo.objects.create(user=user, **user_info)
+                    UserInfo.objects.create(user=user, **userid)
             except Exception as e:
                 # pprint(locals())  # 打出当前函数变量
                 import traceback
