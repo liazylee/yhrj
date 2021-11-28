@@ -1,4 +1,5 @@
 # Create your views here.
+from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from hotel.models import Hotel, HotelRooms
@@ -14,6 +15,7 @@ class HotelViewSet(ReadOnlyModelViewSet):
     """
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
+    permission_classes = [AllowAny]
 
 
 class HotelRoomsViewSet(ReadOnlyModelViewSet):
@@ -22,9 +24,11 @@ class HotelRoomsViewSet(ReadOnlyModelViewSet):
     """
     queryset = HotelRooms.objects.all()
     serializer_class = HotelRoomsSerializer
+    permission_classes = [AllowAny]
 
 
 # 客服服务接口只读
 class ServiceViewSet(ReadOnlyModelViewSet):
     serializer_class = HotelServiceSerializers
     queryset = HotelService.objects.all()
+    permission_classes = [AllowAny]
