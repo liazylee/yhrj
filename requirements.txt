@@ -30,7 +30,7 @@ itypes==1.2.0
 Jinja2==3.0.2
 MarkupSafe==2.0.1
 multidict==5.2.0
-mysqlclient==2.0.3
+mysqlclient==2.1.0
 optionaldict==0.1.2
 packaging==21.2
 Pillow==8.4.0
