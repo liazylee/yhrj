@@ -1,8 +1,8 @@
 # Create your views here.
-import json
 import logging
 import uuid
 
+from alipay.core import alipay
 from django.contrib.auth import get_user_model
 from django.db.models import QuerySet
 from django.utils.translation import ugettext_lazy as _
@@ -68,7 +68,7 @@ class JSONWechatTokenSerializer(Serializer):
             # user_info = json.loads(userid)
             try:
                 _user_info = UserInfo.objects.filter(user=user)
-                logging.info(_user_info,'_user_info')
+                logging.info(_user_info, '_user_info')
                 if _user_info.exists():
                     logging.info('userinfo exists')
                     _user_info.update(**userid)
@@ -137,3 +137,18 @@ class RoomOrderViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+def hello_world(request):
+    # for django users
+    data = request.dict()
+    # for rest_framework users
+    data = request.data
+
+    signature = data.pop("sign")
+
+    # verification
+    success = alipay.verify(data, signature)
+    if success and data["trade_status"] in ("TRADE_SUCCESS", "TRADE_FINISHED"):
+        print("trade succeed")
+    return 'Hello, World!'
